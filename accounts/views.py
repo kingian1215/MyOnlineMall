@@ -10,7 +10,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False #用戶註冊後需管理員審核後才能登入
+            user.is_active = True #用戶註冊後需管理員審核後才能登入
             user.save()
             return redirect('login')
     else:
@@ -30,9 +30,12 @@ def login_view(request):
                 login(request, user)
                 if user.is_teacher:
                     return redirect('teacher_home')
-                else:
+                elif user.is_student:
                     return redirect('student_home')
+                else:
+                    return redirect('product_list')
             else:
+                print('您的帳號尚未通過審核，請聯繫管理員')
                 return render(request, 'login.html', {'form': form, 'error': '您的帳號尚未通過審核，請聯繫管理員'})
     else:
         form = AuthenticationForm()
@@ -41,7 +44,7 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request) #登出
-    return redirect('login')
+    return redirect('product_list')
 
 def student_home(request):
     return render(request,'student_home.html')

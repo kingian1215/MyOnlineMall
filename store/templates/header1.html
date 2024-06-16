@@ -15,15 +15,19 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'product_list' %}">首頁<img src="{% static 'img\Home.png' %}" width='80'></a>
         </li>
+        {% if user.is_teacher %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'make_reservation' %}">餐廳預定<img src="{% static 'img\Home.png' %}" width='80'></a>
         </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'view_cart' %}">顯示購物車<img src="{% static 'img\checkout cart.png' %}" width='80'></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'checkout' %}">結帳<img src="{% static 'img\checkout icon.png' %}" width='80'></a>
         </li>
+        {% endif %}
+
         {% if user.is_authenticated %}
         <li class="nav-item"></li>
         <a href="{% url 'logout' %}">登出</a></li>

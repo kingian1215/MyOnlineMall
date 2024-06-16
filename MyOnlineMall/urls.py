@@ -28,7 +28,7 @@ urlpatterns = [
     # path("teacher/", views.teacher_home, name="teacher_home"),
     path("accounts/", include("accounts.urls")),
     path("reservations/", include("reservations.urls")),
-    path("store/", include("store.urls")),
+    # path("store/", include("store.urls")),
     # path('accounts/', include('allauth.urls')),
 ]
 

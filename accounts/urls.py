@@ -9,5 +9,5 @@ urlpatterns = [
     # path("logout/", views.logout_view, name="logout"),
     path("student/", views.student_home, name="student_home"),
     path("teacher/", views.teacher_home, name="teacher_home"),
-    path("", product_list, name="product_list"),
+    # path("store/", product_list, name="product_list"),
 ]
