@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__) # 取得loggers
 
-# @login_required
+@login_required(login_url='/login/')
 def make_reservation(request):
     if request.method == 'POST': 
         form = ReservationForm(request.POST)
