@@ -12,6 +12,9 @@ def register(request):
             user = form.save(commit=False)
             user.is_active = True #用戶註冊後需管理員審核後才能登入
             user.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('product_list')
             # return redirect('login')
